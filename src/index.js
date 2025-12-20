@@ -1,20 +1,19 @@
 import "dotenv/config";
-import { getPUUIDFromRiotId } from "./services/account.service.js";
-import { getAllMatchIdsForPlayer } from "./services/match.service.js";
+import { getSharedMatchIds } from "./services/sharedMatches.service.js";
 
 async function main() {
   try {
-    const riotId = "darm#envi"; // replace with real ID
+    const riotIdA = "darm#envi";
+    const riotIdB = "envi#yuu";
 
-    const puuid = await getPUUIDFromRiotId(riotId);
-    console.log("PUUID:", puuid);
+    const sharedMatches = await getSharedMatchIds(
+      riotIdA,
+      riotIdB,
+      { maxPages: 5 }
+    );
 
-    const matches = await getAllMatchIdsForPlayer(puuid, {
-      maxPages: 5
-    });
-
-    console.log(`Found ${matches.length} matches`);
-    console.log(matches.slice(0, 5)); // preview
+    console.log(`Shared matches found: ${sharedMatches.length}`);
+    console.log(sharedMatches.slice(0, 5)); // preview
   } catch (err) {
     console.error(err.message);
   }
