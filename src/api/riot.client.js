@@ -15,8 +15,15 @@ export async function getAccountByRiotId(gameName, tagLine) {
   return response.data;
 }
 
-export async function getMatchIdsByPUUID(puuid, start = 0, count = 100) {
+export async function getValMatchIdsByPUUID(puuid, start = 0, count = 100) {
   const url = `https://americas.api.riotgames.com/val/match/v1/matchlists/by-puuid/${puuid}?start=${start}&count=${count}`;
+
+  const response = await riotClient.get(url);
+  return response.data; // array of match IDs
+}
+
+export async function getLolMatchIdsByPUUID(puuid, start = 0, count = 100) {
+  const url = `https://americas.api.riotgames.com/lol/match/v5/matches/by-puuid/${puuid}/ids?start=${start}&count=${count}`;
 
   const response = await riotClient.get(url);
   return response.data; // array of match IDs

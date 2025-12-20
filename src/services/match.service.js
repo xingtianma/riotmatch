@@ -1,4 +1,4 @@
-import { getMatchIdsByPUUID } from "../api/riot.client.js";
+import { getLolMatchIdsByPUUID } from "../api/riot.client.js";
 
 export async function getAllMatchIdsForPlayer(puuid, options = {}) {
   const {
@@ -12,7 +12,7 @@ export async function getAllMatchIdsForPlayer(puuid, options = {}) {
     for (let page = 0; page < maxPages; page++) {
       const start = page * pageSize;
 
-      const matchBatch = await getMatchIdsByPUUID(
+      const matchBatch = await getLolMatchIdsByPUUID(
         puuid,
         start,
         pageSize
