@@ -3,7 +3,7 @@ import { getAllMatchIdsForPlayer } from "./match.service.js";
 import { generateLeagueMatchLinks } from "../utils/matchLinks.js";
 
 export async function getSharedMatchIds(riotIdA, riotIdB, options = {}) {
-  // Convert Riot IDs → PUUIDs
+  // Convert Riot IDs -> PUUIDs
   const puuidA = await getPUUIDFromRiotId(riotIdA);
   const puuidB = await getPUUIDFromRiotId(riotIdB);
 
